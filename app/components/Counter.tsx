@@ -1,16 +1,32 @@
 "use client";
 import React, { useState } from "react";
+import Swal from "sweetalert2";
 
 const Counter = ({ stock }: { stock: number }) => {
-  let [value, setValue] = useState(0);
+  let [value, setValue] = useState(1);
 
   const increment = () => {
-    if (value + 1 > stock) return;
+    if (value + 1 > stock) {
+      Swal.fire({
+        icon: "error",
+        text: "Oops has alcanzado el monto máximo de stock",
+      });
+      return;
+    }
     setValue(value + 1);
   };
   const decrease = () => {
     if (value === 0) return;
     setValue(value - 1);
+  };
+
+  const addProduct = () => {
+    Swal.fire({
+      title: "Success!",
+      text: "Product has been added",
+      icon: "success",
+      confirmButtonText: "Cool",
+    });
   };
   return (
     <>
@@ -23,7 +39,10 @@ const Counter = ({ stock }: { stock: number }) => {
           +
         </button>
       </div>
-      <button className="inline-block bg-blue-600 rounded-full p-3 text-md font-semibold text-white mr-2 mb-3 w-48">
+      <button
+        className="inline-block bg-blue-600 rounded-full p-3 text-md font-semibold text-white mr-2 mb-3 w-48"
+        onClick={addProduct}
+      >
         Add to cart
       </button>
     </>

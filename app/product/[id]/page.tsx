@@ -38,6 +38,7 @@ const ProductDetail = () => {
             <hr />
             <Counter stock={singleProduct.stock} />
             <div className="p-4">
+              <h4 className="mb-2">Categories:</h4>
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
                 {singleProduct.category}
               </span>
