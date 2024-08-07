@@ -13,11 +13,20 @@ const Counter = ({ stock }: { stock: number }) => {
     setValue(value - 1);
   };
   return (
-    <div className="flex gap-5 p-6">
-      <button onClick={decrease}>-</button>
-      <span>{value}</span>
-      <button onClick={increment}>+</button>
-    </div>
+    <>
+      <div className="flex gap-5 p-6">
+        <button className="bg-gray-400 pl-2 pr-2" onClick={decrease}>
+          -
+        </button>
+        <span>{value}</span>
+        <button className="bg-gray-400 pl-2 pr-2" onClick={increment}>
+          +
+        </button>
+      </div>
+      <button className="inline-block bg-blue-600 rounded-full p-3 text-md font-semibold text-white mr-2 mb-3 w-48">
+        Add to cart
+      </button>
+    </>
   );
 };
 

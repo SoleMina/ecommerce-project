@@ -13,13 +13,8 @@ const Menu: React.FC = () => {
   return (
     <>
       <div className="container m-auto py-4 flex justify-between items-center">
-        <Link href={"/"}>
-          <Image
-            src={"/coderhouse-logo.png"}
-            alt="menu-logo"
-            height={100}
-            width={100}
-          />
+        <Link href={"/"} className="text-white">
+          Karianca Shop
         </Link>
         <div className="hidden lg:block">
           <MenuList open={open} handleClose={handleClose} />

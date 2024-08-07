@@ -27,19 +27,24 @@ const ProductDetail = () => {
             />
           </div>
           <div className="px-6 py-4 pb-2">
-            <div className="font-bold text-3xl mb-2 pt-8">
-              {singleProduct.title}
+            <div className="pb-4">
+              <div className="font-bold text-3xl mb-2 pt-8">
+                {singleProduct.title}
+              </div>
+              <p className="text-gray-700 text-base">
+                {singleProduct.description}
+              </p>
             </div>
-            <p className="text-gray-700 text-base">
-              {singleProduct.description}
-            </p>
+            <hr />
             <Counter stock={singleProduct.stock} />
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              {singleProduct.category}
-            </span>
-            <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
-              {singleProduct.price}
-            </span>
+            <div className="p-4">
+              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                {singleProduct.category}
+              </span>
+              <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">
+                {singleProduct.price}
+              </span>
+            </div>
           </div>
         </div>
       ) : (

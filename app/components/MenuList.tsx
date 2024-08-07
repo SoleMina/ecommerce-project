@@ -1,4 +1,5 @@
 import { MenuProps } from "@/types/Menu";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 import Link from "next/link";
 import React from "react";
 
@@ -15,7 +16,7 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
         Admin
       </Link>
       <Link href="/cart" onClick={handleClose} className="text-white p-2">
-        Cart
+        <ShoppingCartOutlined style={{ fontSize: "20px", color: "white" }} />
       </Link>
     </nav>
   );
