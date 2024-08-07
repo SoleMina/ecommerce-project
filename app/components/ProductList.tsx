@@ -4,7 +4,7 @@ import { ProductProps } from "@/types/Product";
 
 interface ProductListProps {
   data: ProductProps[];
-  category: string;
+  category?: string;
 }
 
 const ProductList: React.FC<ProductListProps> = ({ data, category }) => {
@@ -18,6 +18,7 @@ const ProductList: React.FC<ProductListProps> = ({ data, category }) => {
           description={product.description}
           price={product.price}
           category={product.category}
+          image={product.image}
         />
       ))}
     </div>

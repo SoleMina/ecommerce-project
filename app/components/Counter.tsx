@@ -12,7 +12,7 @@ const Counter = () => {
     setValue(value - 1);
   };
   return (
-    <div className="flex gap-5">
+    <div className="flex gap-5 p-6">
       <button onClick={decrease}>-</button>
       <span>{value}</span>
       <button onClick={increment}>+</button>

@@ -12,12 +12,13 @@ const ProductCategory = () => {
       ? mockData
       : mockData.filter(
           (item: ProductProps) =>
-            item.category.toLowerCase() === category.toLowerCase()
+            item.category.toLowerCase() ===
+            decodeURIComponent(category.toLowerCase())
         );
   return (
     <div>
       <h1 className="mb-6 mt-6 text-center text-2xl tracking-tight font-extrabold lg:text-3xl text-blue-600 dark:text-blue-700">
-        Category: {category}
+        Category: {decodeURIComponent(category)}
       </h1>
       <ProductList category={category} data={filterData} />
     </div>
