@@ -11,6 +11,7 @@ const nextConfig = {
       "images-cdn.ubuy.co.in",
       "m.media-amazon.com",
       "i5.walmartimages.com",
+      "images.falabella.com",
     ],
   },
 };

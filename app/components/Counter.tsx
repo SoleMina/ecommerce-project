@@ -1,10 +1,11 @@
 "use client";
 import React, { useState } from "react";
 
-const Counter = () => {
+const Counter = ({ stock }: { stock: number }) => {
   let [value, setValue] = useState(0);
 
   const increment = () => {
+    if (value + 1 > stock) return;
     setValue(value + 1);
   };
   const decrease = () => {
