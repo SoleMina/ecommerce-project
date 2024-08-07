@@ -17,12 +17,12 @@ const NavigationMenu = () => {
           <li
             key={index}
             className={`text-white ${
-              path === "/articles/" + category.toLowerCase()
+              path === "/products/" + category.toLowerCase()
                 ? "underline"
                 : "no-underline"
             }`}
           >
-            <Link href={`/articles/${category.toLowerCase()}`}>{category}</Link>
+            <Link href={`/products/${category.toLowerCase()}`}>{category}</Link>
           </li>
         ))}
       </ul>
