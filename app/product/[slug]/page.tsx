@@ -46,7 +46,7 @@ const ProductDetail = () => {
               <p className="text-gray-700 text-base">{data.description}</p>
             </div>
             <hr />
-            <Counter stock={data.stock} />
+            <Counter stock={data.stock} item={data} />
             <div className="p-4">
               <h4 className="mb-2">Categories:</h4>
               <span className="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">

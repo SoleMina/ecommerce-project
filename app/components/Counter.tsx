@@ -1,9 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
+import { useCartContext } from "./Context/CartContext";
 
-const Counter = ({ stock }: { stock: number }) => {
+const Counter = ({ stock, item }: { stock: number; item: any }) => {
   let [value, setValue] = useState(1);
+
+  const { addToCart } = useCartContext();
 
   const increment = () => {
     if (value + 1 > stock) {
@@ -21,6 +24,7 @@ const Counter = ({ stock }: { stock: number }) => {
   };
 
   const addProduct = () => {
+    addToCart({ ...item, value });
     Swal.fire({
       title: "Success!",
       text: "Product has been added",
