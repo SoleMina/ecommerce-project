@@ -36,7 +36,8 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
   }, [category]);
   return (
     <div className="flex flex-wrap justify-center items-center">
-      {data && data.length > 0 ? (
+      {data &&
+        data.length > 0 &&
         data.map((product, index) => (
           <div key={product.slug}>
             <ProductCard
@@ -50,10 +51,7 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
               slug={product.slug}
             />
           </div>
-        ))
-      ) : (
-        <div>No data</div>
-      )}
+        ))}
     </div>
   );
 };
