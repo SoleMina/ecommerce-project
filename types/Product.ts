@@ -6,4 +6,5 @@ export interface ProductProps {
   category: string;
   image: string;
   stock: number;
+  slug: string;
 }

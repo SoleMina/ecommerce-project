@@ -1,7 +1,6 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
 import React from "react";
-import mockData from "@/data/mockData";
 import ProductList from "../components/ProductList";
 
 const Articles = () => {
@@ -13,7 +12,7 @@ const Articles = () => {
       </h1>
       {/* <br />
       {path} */}
-      <ProductList category={"all"} data={mockData} />
+      <ProductList category={"all"} />
     </div>
   );
 };
