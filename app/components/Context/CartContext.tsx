@@ -1,4 +1,5 @@
 "use client";
+import { ProductProps, CartItem } from "@/types/Product";
 import React, {
   createContext,
   useContext,
@@ -6,14 +7,6 @@ import React, {
   useState,
   useEffect,
 } from "react";
-
-// Define the type for a cart item
-interface CartItem {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-}
 
 // Define the type for the context value
 interface CartContextType {

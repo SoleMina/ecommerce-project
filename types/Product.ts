@@ -8,3 +8,7 @@ export interface ProductProps {
   stock: number;
   slug: string;
 }
+
+export interface CartItem extends ProductProps {
+  quantity: number;
+}
