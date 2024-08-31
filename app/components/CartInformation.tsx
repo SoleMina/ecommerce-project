@@ -31,7 +31,7 @@ const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
             <div className="price">
               <p>
                 <span>Price: </span>
-                {product.price * product.quantity}
+                S/ {product.price * product.quantity}
               </p>
               <p>
                 <span>Units: </span>

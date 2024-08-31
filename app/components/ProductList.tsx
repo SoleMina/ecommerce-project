@@ -18,8 +18,6 @@ const ProductList: React.FC<ProductListProps> = ({ category }) => {
           cache: "no-store",
         });
 
-        console.log(response, "responseeee");
-
         if (response.ok) {
           const result = await response.json();
           console.log(result, "resultttt");

@@ -19,7 +19,7 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
       </Link>
       <Link href="/cart" onClick={handleClose} className="text-white p-2">
         <ShoppingCartOutlined style={{ fontSize: "20px", color: "white" }} />
-        <span>{cartCount}</span>
+        {cartCount > 0 && <span>{cartCount}</span>}
       </Link>
     </nav>
   );

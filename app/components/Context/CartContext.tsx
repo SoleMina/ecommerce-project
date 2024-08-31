@@ -1,5 +1,5 @@
 "use client";
-import { ProductProps, CartItem } from "@/types/Product";
+import { CartItem } from "@/types/Product";
 import React, {
   createContext,
   useContext,
@@ -32,9 +32,31 @@ export const useCartContext = (): CartContextType => {
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [cartCount, setCartCount] = useState<number>(0);
+  const storedCart = localStorage.getItem("cart");
 
   useEffect(() => {
-    console.log(cart, "cartt");
+    if (storedCart) {
+      try {
+        const parsedCart: CartItem[] = JSON.parse(storedCart);
+        console.log("Loaded cart from local storage:", parsedCart);
+        setCart(parsedCart);
+        setCartCount(
+          parsedCart.reduce((count, item) => count + item.quantity, 0)
+        );
+      } catch (error) {
+        console.error("Error parsing cart data from local storage:", error);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    try {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log("Saving cart to local storage:", cart);
+    } catch (error) {
+      console.error("Error saving cart data to local storage:", error);
+    }
+    setCartCount(cart.reduce((count, item) => count + item.quantity, 0));
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
