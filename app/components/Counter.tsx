@@ -24,7 +24,7 @@ const Counter = ({ stock, item }: { stock: number; item: any }) => {
   };
 
   const addProduct = () => {
-    addToCart({ ...item, value });
+    addToCart({ ...item, quantity: value });
     Swal.fire({
       title: "Success!",
       text: "Product has been added",
