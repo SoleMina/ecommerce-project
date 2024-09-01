@@ -13,15 +13,17 @@ const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
   return (
     <div className="cart">
       <div className="container mx-auto px-4">
-        {cart.map((product: CartItem) => (
+        {cart.map((product: CartItem, index: number) => (
           <div
-            className="product flex justify-between w-full"
+            className={`product p-4 flex justify-between w-full border-gray-500 border-2 border-b-0 ${
+              index == cart.length - 1 && "border-b-2"
+            } `}
             key={product.title}
           >
             <Image
               src={product.image}
               alt={product.title}
-              width={100}
+              width={130}
               height={100}
             />
             <div className="info">
