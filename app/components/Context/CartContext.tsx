@@ -13,6 +13,7 @@ interface CartContextType {
   cart: CartItem[];
   addToCart: (item: CartItem) => void;
   cartCount: number;
+  purchaseItems: (item: CartItem[]) => void;
 }
 
 interface CartProviderProps {
@@ -64,8 +65,17 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     setCartCount((prevCount) => prevCount + item.quantity);
   };
 
+  const clearCart = () => {
+    setCart([]);
+  };
+
+  const purchaseItems = (cart: CartItem[]) => {
+    console.log("Purchased items:", cart);
+    clearCart();
+  };
+
   return (
-    <CartContext.Provider value={{ cart, addToCart, cartCount }}>
+    <CartContext.Provider value={{ cart, addToCart, cartCount, purchaseItems }}>
       {children}
     </CartContext.Provider>
   );
