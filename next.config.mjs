@@ -12,6 +12,8 @@ const nextConfig = {
       "m.media-amazon.com",
       "i5.walmartimages.com",
       "images.falabella.com",
+      "www.falabella.com.pe",
+      "firebasestorage.googleapis.com",
     ],
   },
 };
