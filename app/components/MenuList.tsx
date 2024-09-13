@@ -14,7 +14,7 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
       <Link href="/about" onClick={handleClose} className="text-white p-2">
         About Us
       </Link>
-      <Link href="/login" onClick={handleClose} className="text-white p-2">
+      <Link href="/admin" onClick={handleClose} className="text-white p-2">
         Admin
       </Link>
       <Link href="/cart" onClick={handleClose} className="text-white p-2">

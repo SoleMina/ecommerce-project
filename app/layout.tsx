@@ -20,15 +20,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        <AuthProvider>
-          <CartProvider>
+      <AuthProvider>
+        <CartProvider>
+          <body className="flex flex-col min-h-screen">
             <Navbar />
             <div className="flex-grow p-3">{children}</div>
             <Footer />
-          </CartProvider>
-        </AuthProvider>
-      </body>
+          </body>
+        </CartProvider>
+      </AuthProvider>
     </html>
   );
 }
