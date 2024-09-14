@@ -24,7 +24,7 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
         <ShoppingCartOutlined style={{ fontSize: "20px", color: "white" }} />
         {cartCount > 0 && <span>{cartCount}</span>}
       </Link>
-      <a href="" onClick={() => logOut} className="text-white p-2">
+      <a href="" onClick={logOut} className="text-white p-2">
         Logout
       </a>
     </nav>

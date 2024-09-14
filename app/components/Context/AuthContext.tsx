@@ -4,8 +4,9 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInWithPopup,
 } from "firebase/auth";
-import { auth } from "@/firebase/config";
+import { auth, provider } from "@/firebase/config";
 import {
   createContext,
   ReactNode,
@@ -35,6 +36,7 @@ interface AuthContextType {
   registerUser: (user: RegisterUser) => void;
   loginUser: (user: RegisterUser) => void;
   logOut: () => void;
+  loginGoogle: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -68,8 +70,17 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     await signInWithEmailAndPassword(auth, values.email, values.password);
   };
 
+  const loginGoogle = async () => {
+    await signInWithPopup(auth, provider);
+  };
+
   const logOut = async () => {
-    await signOut(auth);
+    try {
+      await signOut(auth);
+      console.log("User logged out successfully");
+    } catch (error) {
+      console.error("Error during logout:", error);
+    }
   };
 
   useEffect(() => {
@@ -93,7 +104,9 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, registerUser, loginUser, logOut }}>
+    <AuthContext.Provider
+      value={{ user, registerUser, loginUser, logOut, loginGoogle }}
+    >
       {children}
     </AuthContext.Provider>
   );

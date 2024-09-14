@@ -11,6 +11,8 @@ const AdminLayout = ({
 }) => {
   const { user } = useAuthContext();
 
+  console.log(user, "userrrrrrr");
+
   // If user is logged in, show admin children, otherwise show the login page
   return <>{user.logged ? children : login}</>;
 };

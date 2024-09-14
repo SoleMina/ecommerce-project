@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useAuthContext } from "../Context/AuthContext";
 
 const LoginForm = () => {
-  const { registerUser, loginUser } = useAuthContext();
+  const { registerUser, loginUser, loginGoogle } = useAuthContext();
 
   const [values, setValues] = useState({
     email: "",
@@ -63,7 +63,7 @@ const LoginForm = () => {
             required
           />
         </div>
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-5">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
@@ -71,6 +71,7 @@ const LoginForm = () => {
           >
             Sign In
           </button>
+
           {/* <a
             className="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
             href="#"
@@ -84,6 +85,13 @@ const LoginForm = () => {
             Register User
           </button>
         </div>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline min-w-full"
+          type="submit"
+          onClick={() => loginGoogle()}
+        >
+          Sign Up with Google
+        </button>
       </form>
     </div>
   );
