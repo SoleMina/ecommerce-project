@@ -3,6 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 import { auth } from "@/firebase/config";
 import {
@@ -33,6 +34,7 @@ interface AuthContextType {
   user: User;
   registerUser: (user: RegisterUser) => void;
   loginUser: (user: RegisterUser) => void;
+  logOut: () => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -56,51 +58,42 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const registerUser = async (values: RegisterUser) => {
     console.log(auth, "auth");
     try {
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        values.email,
-        values.password
-      );
-
-      console.log(userCredential);
-
-      const { user } = userCredential;
-
-      setUser({
-        logged: true,
-        email: user.email,
-        uid: user.uid,
-      });
+      await createUserWithEmailAndPassword(auth, values.email, values.password);
     } catch (error) {
       console.error("Error during registration:", error);
     }
   };
 
   const loginUser = async (values: RegisterUser) => {
-    const userCredential = await signInWithEmailAndPassword(
-      auth,
-      values.email,
-      values.password
-    );
+    await signInWithEmailAndPassword(auth, values.email, values.password);
+  };
 
-    const { user } = userCredential;
-
-    setUser({
-      logged: true,
-      email: user.email,
-      uid: user.uid,
-    });
+  const logOut = async () => {
+    await signOut(auth);
   };
 
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       console.log(user);
+
+      if (user) {
+        setUser({
+          logged: true,
+          email: user.email,
+          uid: user.uid,
+        });
+      } else {
+        setUser({
+          logged: false,
+          email: null,
+          uid: null,
+        });
+      }
     });
-    return () => {};
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, registerUser, loginUser }}>
+    <AuthContext.Provider value={{ user, registerUser, loginUser, logOut }}>
       {children}
     </AuthContext.Provider>
   );
