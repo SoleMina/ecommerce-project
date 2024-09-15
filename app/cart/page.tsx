@@ -24,6 +24,7 @@ const Cart = () => {
       router.push("/products");
     }, 1000);
   };
+
   return (
     <div>
       <h1 className="mb-6 mt-6 text-center text-3xl tracking-tight font-extrabold lg:text-5xl text-blue-600 dark:text-blue-700">
@@ -32,6 +33,7 @@ const Cart = () => {
       {cart && cart.length > 0 ? (
         <div>
           <CartInformation cart={cart} />
+
           <div className="cart--btn flex justify-center p-4">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"

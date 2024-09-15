@@ -10,6 +10,9 @@ interface CartInformationProps {
 //const CartInformation: React.FC<{ cart: CartItem[] }> = ({ cart }) =>
 
 const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
+  const totalPrice = cart.reduce((acc, product) => {
+    return acc + product.price * product.quantity;
+  }, 0);
   return (
     <div className="cart">
       <div className="container mx-auto px-4">
@@ -42,6 +45,9 @@ const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
             </div>
           </div>
         ))}
+        <div className="price text-center p-10">
+          <h3>Total: S/ {totalPrice}</h3>
+        </div>
       </div>
     </div>
   );
