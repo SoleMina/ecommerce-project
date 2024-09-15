@@ -7,7 +7,7 @@ import { useAuthContext } from "./Context/AuthContext";
 
 const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
   const { cartCount } = useCartContext();
-  const { logOut } = useAuthContext();
+  const { logOut, user } = useAuthContext();
   console.log(logOut, "logout");
   return (
     <nav className={`flex mt-4 gap-3 px-3 ${open ? "flex-col" : ""}`}>
@@ -24,9 +24,11 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
         <ShoppingCartOutlined style={{ fontSize: "20px", color: "white" }} />
         {cartCount > 0 && <span>{cartCount}</span>}
       </Link>
-      <a href="" onClick={logOut} className="text-white p-2">
-        Logout
-      </a>
+      {user.logged && (
+        <a href="" onClick={logOut} className="text-white p-2">
+          Logout
+        </a>
+      )}
     </nav>
   );
 };
