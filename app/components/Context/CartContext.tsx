@@ -61,7 +61,21 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
   }, [cart]);
 
   const addToCart = (item: CartItem) => {
-    setCart((prevCart) => [...prevCart, item]);
+    setCart((prevCart) => {
+      const itemExists = prevCart.some(
+        (cartItem) => cartItem.slug === item.slug
+      );
+
+      if (itemExists) {
+        return prevCart.map((cartItem) =>
+          cartItem.slug === item.slug
+            ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
+            : cartItem
+        );
+      } else {
+        return [...prevCart, item];
+      }
+    });
     setCartCount((prevCount) => prevCount + item.quantity);
   };
 
