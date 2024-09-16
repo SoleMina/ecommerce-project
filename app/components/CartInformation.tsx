@@ -2,6 +2,9 @@
 import React from "react";
 import Image from "next/image";
 import { CartItem } from "@/types/Product";
+import { DeleteOutlined } from "@ant-design/icons";
+import { useCartContext } from "./Context/CartContext";
+import Swal from "sweetalert2";
 
 interface CartInformationProps {
   cart: CartItem[];
@@ -10,9 +13,32 @@ interface CartInformationProps {
 //const CartInformation: React.FC<{ cart: CartItem[] }> = ({ cart }) =>
 
 const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
+  const { deleteProduct } = useCartContext();
+
   const totalPrice = cart.reduce((acc, product) => {
     return acc + product.price * product.quantity;
   }, 0);
+
+  const handleDelete = (slug: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        deleteProduct(slug);
+        Swal.fire({
+          title: "Deleted!",
+          text: "Product has been deleted.",
+          icon: "success",
+        });
+      }
+    });
+  };
   return (
     <div className="cart">
       <div className="container mx-auto px-4">
@@ -42,6 +68,7 @@ const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
                 <span>Units: </span>
                 {product.quantity}
               </p>
+              <DeleteOutlined onClick={() => handleDelete(product.slug)} />
             </div>
           </div>
         ))}
