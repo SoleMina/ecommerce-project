@@ -14,20 +14,10 @@ import {
   useEffect,
   useState,
 } from "react";
+import { RegisterUser, User } from "@/types/user";
 
 interface AuthProviderProps {
   children: ReactNode;
-}
-
-interface User {
-  logged: boolean;
-  email: string | null;
-  uid: number | null | string;
-}
-
-interface RegisterUser {
-  email: string;
-  password: string;
 }
 
 // Define the context value to include both user and setUser

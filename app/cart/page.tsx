@@ -6,23 +6,35 @@ import { useCartContext } from "../components/Context/CartContext";
 import Swal from "sweetalert2";
 import { CartItem } from "@/types/Product";
 import { useRouter } from "next/navigation";
+import { useAuthContext } from "../components/Context/AuthContext";
+import { User } from "@/types/user";
 
 const Cart = () => {
-  const { cart, purchaseItems } = useCartContext();
+  const { cart, purchaseItems, addOrder } = useCartContext();
+  const { user } = useAuthContext();
   const router = useRouter();
 
-  const handlePurchase = (cart: CartItem[]) => {
-    purchaseItems(cart);
-    Swal.fire({
-      title: "Thank you!",
-      text: "Your purchase was successful",
-      icon: "success",
-      confirmButtonText: "Ok",
-    });
+  const handlePurchase = (cart: CartItem[], user: User) => {
+    console.log(user, "userrr login");
+    if (user.logged) {
+      purchaseItems(cart);
+      addOrder(cart, user);
+      Swal.fire({
+        title: "Thank you!",
+        text: "Your purchase was successful",
+        icon: "success",
+        confirmButtonText: "Ok",
+      });
 
-    setTimeout(() => {
-      router.push("/products");
-    }, 1000);
+      setTimeout(() => {
+        router.push("/products");
+      }, 1000);
+      return;
+    }
+    Swal.fire({
+      icon: "error",
+      text: "User is not logged!",
+    });
   };
 
   return (
@@ -37,7 +49,7 @@ const Cart = () => {
           <div className="cart--btn flex justify-center p-4">
             <button
               className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-              onClick={() => handlePurchase(cart)}
+              onClick={() => handlePurchase(cart, user)}
             >
               Purchase
             </button>

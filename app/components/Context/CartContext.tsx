@@ -7,6 +7,8 @@ import React, {
   useState,
   useEffect,
 } from "react";
+import { db } from "@/firebase/config";
+import { collection, addDoc, Timestamp } from "firebase/firestore";
 
 // Define the type for the context value
 interface CartContextType {
@@ -15,6 +17,7 @@ interface CartContextType {
   cartCount: number;
   purchaseItems: (item: CartItem[]) => void;
   deleteProduct: (slug: string) => void;
+  addOrder: (cart: CartItem[], user: any) => void;
 }
 
 interface CartProviderProps {
@@ -94,9 +97,45 @@ export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     clearCart();
   };
 
+  const addOrder = async (cart: CartItem[], user: any) => {
+    try {
+      // Define the order object with cart products and user info
+      const order = {
+        userId: user.uid,
+        userName: user.email,
+        products: cart.map((item: any) => ({
+          productId: item.slug,
+          productTitle: item.title,
+          quantity: item.quantity,
+          price: item.price,
+        })),
+        totalAmount: cart.reduce(
+          (total, item) => total + item.price * item.quantity,
+          0
+        ),
+        orderDate: Timestamp.now(),
+        status: "Pending",
+      };
+
+      // Add the order to the 'orders' collection in Firestore
+      const docRef = await addDoc(collection(db, "orders"), order);
+
+      console.log("Order placed with ID: ", docRef.id);
+    } catch (error) {
+      console.error("Error adding order: ", error);
+    }
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, cartCount, purchaseItems, deleteProduct }}
+      value={{
+        cart,
+        addToCart,
+        cartCount,
+        purchaseItems,
+        deleteProduct,
+        addOrder,
+      }}
     >
       {children}
     </CartContext.Provider>

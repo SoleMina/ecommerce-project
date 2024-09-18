@@ -9,8 +9,6 @@ interface ProductListProps {
 const ProductList: React.FC<ProductListProps> = ({ category }) => {
   const [data, setData] = useState<ProductProps[]>([]);
 
-  console.log(category, "category");
-
   useEffect(() => {
     const fetchData = async () => {
       try {
