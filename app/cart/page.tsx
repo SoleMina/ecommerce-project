@@ -15,7 +15,7 @@ const Cart = () => {
   const router = useRouter();
 
   const handlePurchase = (cart: CartItem[], user: User) => {
-    console.log(user, "userrr login");
+    console.log(user, "user login");
     if (user.logged) {
       purchaseItems(cart);
       addOrder(cart, user);

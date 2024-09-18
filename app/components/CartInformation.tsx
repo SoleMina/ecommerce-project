@@ -59,15 +59,17 @@ const CartInformation: React.FC<CartInformationProps> = ({ cart }) => {
               <h4>{product.title}</h4>
               <p>{product.description}</p>
             </div>
-            <div className="price">
-              <p>
-                <span>Price: </span>
-                S/ {product.price * product.quantity}
-              </p>
-              <p>
-                <span>Units: </span>
-                {product.quantity}
-              </p>
+            <div className="price flex items-start gap-6">
+              <div>
+                <p>
+                  <span>Price: </span>
+                  S/ {product.price * product.quantity}
+                </p>
+                <p>
+                  <span>Units: </span>
+                  {product.quantity}
+                </p>
+              </div>
               <DeleteOutlined onClick={() => handleDelete(product.slug)} />
             </div>
           </div>

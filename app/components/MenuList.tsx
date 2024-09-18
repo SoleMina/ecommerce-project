@@ -4,6 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { useCartContext } from "./Context/CartContext";
 import { useAuthContext } from "./Context/AuthContext";
+import { relative } from "path";
 
 const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
   const { cartCount } = useCartContext();
@@ -22,7 +23,23 @@ const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
       </Link>
       <Link href="/cart" onClick={handleClose} className="text-white p-2">
         <ShoppingCartOutlined style={{ fontSize: "20px", color: "white" }} />
-        {cartCount > 0 && <span>{cartCount}</span>}
+        {cartCount > 0 && (
+          <span
+            className="
+              text-[10px] 
+              text-black 
+              bg-[#e1da5d] 
+              px-[6px] 
+              py-[3px] 
+              rounded-full 
+              relative 
+              -top-[12px] 
+              -left-[7px]
+            "
+          >
+            {cartCount}
+          </span>
+        )}
       </Link>
       {user.logged && (
         <a href="" onClick={logOut} className="text-white p-2">
