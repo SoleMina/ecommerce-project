@@ -4,7 +4,6 @@ import Link from "next/link";
 import React from "react";
 import { useCartContext } from "./Context/CartContext";
 import { useAuthContext } from "./Context/AuthContext";
-import { relative } from "path";
 
 const MenuList: React.FC<MenuProps> = ({ open, handleClose }) => {
   const { cartCount } = useCartContext();
