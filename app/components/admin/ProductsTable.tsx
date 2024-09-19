@@ -44,7 +44,7 @@ const ProductsTable = async () => {
           {items &&
             items.length > 0 &&
             items.map((item: any) => (
-              <tr>
+              <tr key={item.slug}>
                 <td className="p-2">{item.title}</td>
                 <td className="p-2">{item.description}</td>
                 <td className="p-2">
