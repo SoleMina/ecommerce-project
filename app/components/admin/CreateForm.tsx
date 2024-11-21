@@ -39,7 +39,9 @@ const CreateForm = () => {
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
@@ -166,7 +168,24 @@ const CreateForm = () => {
           >
             Category:
           </label>
-          <input
+          <select
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            name="category"
+            onChange={handleChange}
+            value={values.category}
+            required
+          >
+            <option value="" disabled>
+              Select a category
+            </option>
+            <option value="sports">Sports</option>
+            <option value="gamming">Gamming</option>
+            <option value="electronics">Electronics</option>
+            <option value="fitness">Fitness</option>
+            <option value="toys">Toys</option>
+            <option value="kitchen">Kitchen</option>
+          </select>
+          {/* <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="category"
             type="text"
@@ -174,7 +193,7 @@ const CreateForm = () => {
             value={values.category}
             placeholder="Category"
             onChange={handleChange}
-          />
+          /> */}
         </div>
         <div className="mb-4">
           <label

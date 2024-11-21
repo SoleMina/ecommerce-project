@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 const fetchProducts = async () => {
-  const items = await fetch("http://localhost:3001/api/products/all", {
+  const items = await fetch("http://localhost:3000/api/products/all", {
     cache: "no-store",
   }).then((res) => res.json());
   return items;
