@@ -36,6 +36,7 @@ const CreateForm = () => {
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]); // Set the selected file in the state
+      console.log(file, "file");
     }
   };
 
@@ -115,7 +116,7 @@ const CreateForm = () => {
             className="block text-gray-700 text-sm font-bold mb-2"
             htmlFor="image"
           >
-            Imagen:
+            Image:
           </label>
           <input
             className=""
@@ -126,6 +127,13 @@ const CreateForm = () => {
             required
             onChange={handleFileChange}
           />
+          {file && (
+            <img
+              src={URL.createObjectURL(file)}
+              alt="Selected file"
+              width="100"
+            />
+          )}
         </div>
         <div className="mb-4">
           <label
@@ -184,6 +192,7 @@ const CreateForm = () => {
             <option value="fitness">Fitness</option>
             <option value="toys">Toys</option>
             <option value="kitchen">Kitchen</option>
+            <option value="home-appliances">Home Appliances</option>
           </select>
           {/* <input
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
