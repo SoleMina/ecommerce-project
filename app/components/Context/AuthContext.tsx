@@ -33,7 +33,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
-  console.log(context, "context");
+
   if (context === undefined) {
     throw new Error("useAuthContext must be used within an AuthProvider");
   }
@@ -48,7 +48,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   });
 
   const registerUser = async (values: RegisterUser) => {
-    console.log(auth, "auth");
     try {
       await createUserWithEmailAndPassword(auth, values.email, values.password);
     } catch (error) {
